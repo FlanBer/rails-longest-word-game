@@ -1,0 +1,15 @@
+<h1>New game</h1>
+
+
+<ol class="list-inline-item col-auto p-2 border text-center bg-primary text-white">
+  <% @letters.each do |letter| %>
+    <%= letter.capitalize %>
+  <% end %>
+</ol>
+
+<p>What the longest word you can find ?</p>
+<form class="mb-3 form-check" action="/score" method="POST" data-turbo="false">
+<input type="text" name="score">
+<input type="submit" value="Play" class="btn btn-primary">
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+</form>
