@@ -1,2 +1,13 @@
-<%= params[:score] %>
-<%= attempt_return %>
+<h1>Result</h1>
+
+<% hidden_field_tag("found", @attempt_return["found"]) %>
+<% hidden_field_tag("word", @attempt_return["word"]) %>
+<% hidden_field_tag("length", @attempt_return["length"]) %>
+
+<p>Sorry but <%= params[:score] %> can't be built out of
+  <% @letters.each do |letter| %>
+    <%= letter.capitalize %>
+  <% end %>
+<%= @built_test %>
+
+</p>

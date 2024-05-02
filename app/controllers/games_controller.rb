@@ -11,9 +11,17 @@ class GamesController < ApplicationController
       @letters = random_grid
   end
 
+  def included?(guess, grid)
+    guess.chars.all? { |letter| guess.count(letter) <= grid.count(letter) }
+  end
+
   def score
     url = "https://wagon-dictionary.herokuapp.com/#{params[:score]}"
     attempt_serialized = URI.open(url).read
-    attempt_return = JSON.parse(attempt_serialized)
+    @attempt_return = JSON.parse(attempt_serialized)
+  end
+
+  def hidden_field_tag(name, value = nil, options = {})
+    text_field_tag(name, value, options.merge(type: :hidden))
   end
 end
